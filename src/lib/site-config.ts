@@ -4,7 +4,7 @@ export const siteConfig = {
   description:
     "Guías prácticas y consejos sobre productividad, finanzas personales, salud y tecnología para mejorar tu día a día.",
   url: process.env.NEXT_PUBLIC_SITE_URL || process.env.RENDER_EXTERNAL_URL || "http://localhost:3000",
-  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
+  contactEmail: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "jbg061108@gmail.com",
   adsenseEnabled: process.env.NEXT_PUBLIC_ADSENSE_ENABLED === "true" && process.env.NEXT_PUBLIC_ADSENSE_CMP_READY === "true",
   locale: "es_ES",
   language: "es",
