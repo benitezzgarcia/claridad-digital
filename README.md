@@ -1,10 +1,12 @@
 # Claridad Digital
 
-Blog en español con 104 artículos: los cuatro originales y 100 guías nuevas, 25 por categoría. Incluye categorías indexables, búsqueda sin distinción de tildes, paginación, artículos relacionados de la misma categoría, metadatos, sitemap y robots.
+Blog en español con 104 artículos ampliados: los cuatro originales y 100 guías nuevas, 25 por categoría. Cada artículo tiene fotografía, créditos y enlace a su licencia. Incluye categorías indexables, búsqueda sin distinción de tildes, paginación, artículos relacionados de la misma categoría, metadatos, sitemap y robots.
 
 ## Desarrollo
 
-Requiere Node.js 22 o 24. Ejecutar `npm ci`, `npm run build` y `npm start`. El contenido nuevo está en `content/`; cada línea contiene título, introducción, pasos, ejemplo, errores y revisión, separados por `|`. `npm run check:content` valida las 100 entradas y genera `src/content/additional-articles.json`. El proceso de construcción también lo ejecuta.
+Requiere Node.js 22 o 24. Ejecutar `npm ci`, `npm run build` y `npm start`. El contenido nuevo está en `content/`; cada línea base contiene título, introducción, pasos, ejemplo, errores y revisión, separados por `|`. Los archivos `*-ampliacion.txt` añaden dos secciones específicas por artículo; cada sección usa `título~texto`, separada por `|`. `npm run check:content` valida las 100 entradas y sus ampliaciones y genera `src/content/additional-articles.json`. El proceso de construcción también lo ejecuta. Los cuatro originales se amplían en `src/content/legacy-expansions.json`.
+
+Las fotos están en `public/images/articles/`, con procedencia, autor y licencia documentados en `src/content/photo-manifest.json`. Se sirven desde la propia web; la construcción no consulta bancos de imágenes externos. El catálogo de fotos fue revisado tras la selección automática y no debe regenerarse sin una nueva revisión visual.
 
 ## Render
 
@@ -20,7 +22,7 @@ El servicio gratuito puede detenerse por inactividad según las condiciones de R
 
 ## Contacto y titular
 
-Configurar `NEXT_PUBLIC_CONTACT_EMAIL` con un buzón real. Completar los datos del titular y la información de privacidad según la actividad antes de solicitar monetización. Se retiraron la dirección ficticia y las afirmaciones de disponer de un equipo de expertos no identificado. El contenido nuevo declara asistencia de IA.
+El correo público autorizado es `jbg061108@gmail.com`; se puede sustituir con `NEXT_PUBLIC_CONTACT_EMAIL`. Completar los datos del titular y la información de privacidad según la actividad antes de solicitar monetización. Se retiraron la dirección ficticia y las afirmaciones de disponer de un equipo de expertos no identificado. El contenido nuevo declara asistencia de IA.
 
 El formulario está desactivado por defecto. Para habilitarlo hace falta configurar `DATABASE_URL`, crear la tabla definida en `src/db/schema.ts` y activar `CONTACT_FORM_ENABLED=true`. No basta con añadir una conexión a una base vacía. Sin esta configuración la API devuelve 503 de forma controlada y la página no ofrece un formulario que falle al enviar.
 
@@ -30,7 +32,7 @@ Publicar artículos no activa anuncios ni garantiza aprobación o ingresos. Comp
 
 1. Revisar la calidad, exactitud y utilidad del contenido, y completar contacto y datos del titular.
 2. Registrar el sitio y solicitar revisión en la cuenta de AdSense del titular.
-3. Configurar `NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-` seguido de los 16 dígitos reales. Esto incorpora la meta de verificación y genera `/ads.txt` con el identificador real.
+3. El identificador autorizado `ca-pub-1344120784875369` está incorporado como valor predeterminado; se puede sustituir con `NEXT_PUBLIC_ADSENSE_CLIENT_ID`. La etiqueta meta y `/ads.txt` se generan con ese valor. En AdSense, elegir el método «Etiqueta meta» y solicitar la verificación tras el despliegue. Esto no activa anuncios.
 4. Configurar una CMP certificada para el consentimiento que corresponda a la audiencia; la web no implementa una CMP por el mero hecho de cambiar una variable. Revisar privacidad con los datos y proveedores reales.
 5. Tras configurar el consentimiento y contar con aprobación, activar `NEXT_PUBLIC_ADSENSE_ENABLED=true` y `NEXT_PUBLIC_ADSENSE_CMP_READY=true`, habilitar Auto Ads en AdSense y volver a desplegar.
 

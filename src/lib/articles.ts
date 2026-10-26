@@ -1,4 +1,6 @@
 import additionalArticles from '@/content/additional-articles.json';
+import photoManifest from '@/content/photo-manifest.json';
+import legacyExpansions from '@/content/legacy-expansions.json';
 
 export type Article = {
   slug: string;
@@ -13,9 +15,10 @@ export type Article = {
   author: string;
   content: string[];
   sources?: { title: string; url: string }[];
+  imageCredit?: { title: string; author: string; license: string; licenseUrl: string; source: string };
 };
 
-export const articles: Article[] = [
+const baseArticles: Article[] = [
   ...additionalArticles,
   {
     slug: "productividad-trabajando-desde-casa",
@@ -98,6 +101,17 @@ export const articles: Article[] = [
     ],
   },
 ];
+
+export const articles: Article[] = baseArticles.map(article => {
+  const photo = (photoManifest as Record<string, typeof photoManifest[keyof typeof photoManifest]>)[article.slug];
+  const extra = (legacyExpansions as Record<string, string[]>)[article.slug] ?? [];
+  const content = [...article.content, ...extra];
+  const words = content.filter(p => !p.startsWith('## ')).join(' ').split(/\s+/).length;
+  return { ...article, content, readingTime: `${Math.max(1, Math.ceil(words / 200))} min de lectura`,
+    ...(extra.length ? { updatedAt: '2026-10-26' } : {}),
+    ...(photo ? { image: photo.image, imageAlt: photo.imageAlt, imageCredit: { title: photo.title, author: photo.author, license: photo.license, licenseUrl: photo.licenseUrl, source: photo.source } } : {}),
+  };
+});
 
 export function getAllArticles(): Article[] {
   return [...articles].sort(

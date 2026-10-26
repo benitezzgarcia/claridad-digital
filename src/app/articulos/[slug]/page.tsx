@@ -119,6 +119,8 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             />
           </div>
 
+          {article.imageCredit && <p className="mt-2 text-xs leading-relaxed text-slate-500">Foto: {article.imageCredit.author}. <a className="underline" href={article.imageCredit.source} target="_blank" rel="noopener noreferrer">Ver original</a> · <a className="underline" href={article.imageCredit.licenseUrl} target="_blank" rel="noopener noreferrer">{article.imageCredit.license}</a>. Imagen ajustada de tamaño para esta web.</p>}
+
           {/* Anuncio tras la introducción */}
           <div className="my-8">
             <GoogleAd format="in-article" label="Anuncio entre párrafos" />

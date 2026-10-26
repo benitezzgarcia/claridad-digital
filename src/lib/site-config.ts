@@ -19,7 +19,7 @@ export const siteConfig = {
   ],
   // ID de cliente de AdSense (ca-pub-XXXXXXXXXXXXXXXX). Déjalo vacío hasta tener
   // la cuenta aprobada: así el script de Auto Ads no se inyecta en desarrollo.
-  adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "",
+  adsenseClientId: process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID ?? "ca-pub-1344120784875369",
 };
 
 export type SiteConfig = typeof siteConfig;
