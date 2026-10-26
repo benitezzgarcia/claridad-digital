@@ -1,0 +1,10 @@
+const fs = require('fs');
+fs.mkdirSync('public/images', { recursive: true });
+const themes = [
+ ['productividad', '#4338ca', 'Productividad', '<rect x="300" y="160" width="310" height="240" rx="22" fill="white"/><path d="M350 225h210M350 280h160M350 335h190" stroke="#818cf8" stroke-width="18" stroke-linecap="round"/><circle cx="675" cy="315" r="80" fill="#c7d2fe"/><path d="M675 270v50l30 20" fill="none" stroke="#4338ca" stroke-width="12" stroke-linecap="round"/>'],
+ ['finanzas', '#047857', 'Finanzas', '<rect x="270" y="220" width="430" height="200" rx="30" fill="#d1fae5"/><path d="M330 350l90-50 85 25 110-115" fill="none" stroke="#047857" stroke-width="18" stroke-linecap="round"/><circle cx="700" cy="230" r="70" fill="#a7f3d0"/><path d="M680 210h45M680 235h38" stroke="#047857" stroke-width="12" stroke-linecap="round"/>'],
+ ['salud', '#be185d', 'Bienestar', '<circle cx="500" cy="290" r="145" fill="#fce7f3"/><path d="M500 360c-130-75-110-170-45-145 25 10 45 40 45 40s20-30 45-40c65-25 85 70-45 145" fill="#db2777"/><path d="M685 390c-20-90 0-150 70-170-5 90-30 145-70 170" fill="#bbf7d0"/>'],
+ ['tecnologia', '#0369a1', 'Tecnología', '<rect x="280" y="150" width="430" height="260" rx="25" fill="#e0f2fe"/><rect x="310" y="180" width="370" height="190" rx="10" fill="#0c4a6e"/><path d="M245 420h500l-45 35H290z" fill="#bae6fd"/><path d="M440 240l-40 35 40 35m100-70 40 35-40 35" fill="none" stroke="#7dd3fc" stroke-width="14" stroke-linecap="round"/>']
+];
+for (const [name,color,label,art] of themes) fs.writeFileSync(`public/images/articulo-${name}.svg`, `<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560"><rect width="1000" height="560" fill="${color}"/><circle cx="950" cy="30" r="250" fill="white" opacity=".06"/><circle cx="30" cy="530" r="220" fill="white" opacity=".07"/>${art}<text x="45" y="510" font-family="Arial,sans-serif" font-size="27" fill="white">Claridad Digital · ${label}</text></svg>`);
+let text=fs.readFileSync('src/lib/articles.ts','utf8').replaceAll('.jpg','.svg');fs.writeFileSync('src/lib/articles.ts',text);

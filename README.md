@@ -37,4 +37,3 @@ Publicar artículos no activa anuncios ni garantiza aprobación o ingresos. Comp
 No hay bloques con identificadores inventados ni solicitudes de anuncios mientras no se habilite la configuración. Las dos variables de activación son una barrera de configuración, no una certificación automática de cumplimiento.
 
 Referencias: [sitio preparado para AdSense](https://support.google.com/adsense/answer/7299563?hl=es), [consentimiento y CMP](https://support.google.com/adsense/answer/13554020?hl=es), [Next.js en Render](https://render.com/docs/deploy-nextjs-app).
-
